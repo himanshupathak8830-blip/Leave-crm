@@ -58,10 +58,10 @@ app.use((req, res, next) => {
 
 app.use(express.json({ limit: "20kb" }));
 app.use(cors());
-app.use(express.static(path.join(__dirname, "../frontend")));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "index.html"));
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 const loginAttempts = new Map();
