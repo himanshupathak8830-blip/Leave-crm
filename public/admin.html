@@ -308,6 +308,12 @@ body {
     display: none;
 }
 
+.login-msg-box.success {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+}
+
 .login-footer {
     margin-top: auto;
     font-size: 12px;
@@ -998,14 +1004,12 @@ tr:hover td {
     height: 32px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    align-items: center;
+    background: white;
+    color: #475569;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-}
-
-.pag-btn svg {
-    width: 14px;
-    height: 14px;
+    font-size: 12px;
 }
 
 .pag-btn:hover {
@@ -1016,177 +1020,115 @@ tr:hover td {
 .pag-btn.active {
     background: var(--primary-gradient);
     color: white;
-    border: none;
+    border-color: var(--primary-color);
 }
 
 .pag-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background: white;
 }
 
-/* Floating status update notifications inside dashboard */
-.dash-msg-bar {
-    margin-bottom: 20px;
-    padding: 12px 16px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: var(--shadow-sm);
-    animation: slideDown 0.3s ease;
+/* Dashboard Logout Button */
+.logout-btn {
+    padding: 10px 14px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-stack);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.dash-msg-bar:empty {
-    display: none;
+.logout-btn:hover {
+    background: #dc2626;
 }
 
-.dash-msg-success {
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    color: #166534;
-}
-
-.dash-msg-info {
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    color: #1e40af;
-}
-
-@keyframes slideDown {
-    from { transform: translateY(-10px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-@media (max-width: 1200px) {
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 220px;
+    }
+    .main-content {
+        margin-left: 220px;
+    }
     .stats-row {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .sidebar {
-        width: 70px;
-        padding: 20px 8px;
-        align-items: center;
+        position: absolute;
+        left: -260px;
+        height: 100%;
+        z-index: 101;
+        transition: left 0.3s ease;
     }
-    .sidebar-logo {
-        padding: 0 0 16px;
-    }
-    .sidebar-logo img {
-        height: auto;
-        width: 50px;
-        content: url("logo.png"); /* fallback icon on collapse */
-    }
-    .menu-item a {
-        padding: 12px;
-        justify-content: center;
-    }
-    .menu-item span {
-        display: none;
-    }
-    .sidebar-widget, .sidebar-girl-card {
-        display: none;
+    .sidebar.open {
+        left: 0;
     }
     .main-content {
-        margin-left: 70px;
-        padding: 20px;
-    }
-}
-
-@media (max-width: 680px) {
-    .dashboard-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
-    .header-right {
-        width: 100%;
-        justify-content: space-between;
+        margin-left: 0;
     }
     .stats-row {
         grid-template-columns: 1fr;
     }
     .table-header-bar {
         flex-direction: column;
-        align-items: stretch;
-    }
-    .table-actions-wrap {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .search-input-wrap input {
-        width: 100%;
-    }
-    .search-input-wrap input:focus {
-        width: 100%;
+        align-items: flex-start;
     }
 }
 </style>
 </head>
-
 <body>
 
-<!-- ==========================================================================
-     STATE A: SPLIT SCREEN LOGIN PANEL CONTAINER
-     ========================================================================== -->
+<!-- =================================================================
+     STATE A: LOGIN PANEL
+     ================================================================= -->
 <div id="loginBox" class="login-container">
-    <!-- Left panel (Orange block with logo and graphic illustration) -->
     <div class="login-left">
         <div class="brand-header">
-            <img src="logo.png" alt="Analytics Career Connect">
+            <img src="https://lh3.googleusercontent.com/d/1oqFkpO8Hhv7IEYeKXWq19uubuKeFHCZ9" alt="ACC Logo">
         </div>
-
-        <!-- Welcome Copy & CTA -->
         <div class="welcome-content">
-            <h1>Streamlined Leave Management</h1>
-            <p>Manage employee leave requests efficiently with a centralized admin panel. Approve, reject, and track all leave applications in one place.</p>
+            <h1>Welcome, Admin! 👋</h1>
+            <p>Manage employee leave requests efficiently. Login with your credentials.</p>
         </div>
-
-        <!-- Illustration -->
         <div class="illustration-wrap">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
-                <circle cx="100" cy="100" r="90" stroke="white" stroke-width="2" opacity="0.3"/>
-                <path d="M 80 120 Q 100 140 120 120" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
-                <circle cx="85" cy="90" r="5" fill="white"/>
-                <circle cx="115" cy="90" r="5" fill="white"/>
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.1)"/>
+                <circle cx="100" cy="100" r="60" fill="rgba(255,255,255,0.08)"/>
             </svg>
         </div>
-
-        <!-- Footer Text -->
-        <p style="font-size:12px; opacity: 0.8;">Keep your HR operations organized and transparent.</p>
     </div>
 
-    <!-- Right panel (Login form) -->
     <div class="login-right">
         <div class="login-form-card">
             <h2>Admin Login</h2>
-            <form id="loginForm">
-                <!-- Email Field -->
+            <form onsubmit="handleLogin(event)">
                 <div class="input-field-wrap">
-                    <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    <svg class="field-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
                     </svg>
-                    <input id="email" type="email" placeholder="Admin email" autocomplete="username" required>
+                    <input type="email" id="email" placeholder="Email" required>
                 </div>
 
-                <!-- Password Field -->
                 <div class="input-field-wrap">
-                    <svg class="field-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm6-10V7a3 3 0 00-3-3H9a3 3 0 00-3 3v2h6z" />
+                    <svg class="field-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                     </svg>
-                    <input id="password" type="password" placeholder="Password" autocomplete="current-password" required>
-                    <button type="button" id="togglePassword" class="toggle-pwd-btn">
-                        <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="button" class="toggle-pwd-btn" onclick="togglePassword()">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                         </svg>
                     </button>
                 </div>
 
-                <!-- Form Actions -->
                 <div class="form-actions-wrap">
                     <label class="remember-me-wrap">
                         <input type="checkbox" id="rememberMe">
@@ -1195,159 +1137,131 @@ tr:hover td {
                     <a href="#" class="forgot-pwd-link">Forgot password?</a>
                 </div>
 
-                <!-- Submit Button -->
-                <button type="submit" id="loginBtn" class="login-submit-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                    </svg>
+                <button type="submit" class="login-submit-btn" id="loginBtn">
                     <span>Sign In</span>
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
                 </button>
 
-                <!-- Error Message -->
-                <div id="loginMessage" class="login-msg-box"></div>
+                <div class="login-msg-box" id="loginMessage"></div>
             </form>
-            <p class="login-footer">🔒 Your credentials are secure and encrypted.</p>
+
+            <div class="login-footer">
+                © 2024 Leave Management System | Version 1.0
+            </div>
         </div>
     </div>
 </div>
 
-<!-- ==========================================================================
-     STATE B: FULL INTERACTIVE DASHBOARD LAYOUT
-     ========================================================================== -->
+<!-- =================================================================
+     STATE B: DASHBOARD PANEL (Initially Hidden)
+     ================================================================= -->
 <div id="panel" class="dashboard-layout hidden">
-    <!-- 1. Dark Sidebar Panel (Image 3 Left sidebar) -->
-    <aside class="sidebar">
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
         <div class="sidebar-logo">
-            <img src="new_admin_logo.png" alt="Analytics Career Connect">
+            <img src="https://lh3.googleusercontent.com/d/1oqFkpO8Hhv7IEYeKXWq19uubuKeFHCZ9" alt="ACC Logo">
         </div>
+
         <ul class="sidebar-menu">
-            <li class="menu-item active" data-tab="dashboard">
+            <li class="menu-item active" onclick="switchTab(this, 'overview')">
                 <a>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-3m0 0l7-4 7 4M5 9v10a1 1 0 001 1h12a1 1 0 001-1V9m-9 4l4 4m0 0l4-4m-4 4V8" />
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a3 3 0 013 3v1a1 1 0 001 1h1a1 1 0 001-1v-1a1 1 0 011-1h2a1 1 0 011 1v1a1 1 0 001 1h1a1 1 0 001-1v-1a3 3 0 013-3v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                     </svg>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="menu-item" data-tab="leave-requests">
+            <li class="menu-item" onclick="switchTab(this, 'requests')">
                 <a>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
                     <span>Leave Requests</span>
                 </a>
             </li>
-            <li class="menu-item" data-tab="approved-leaves">
+            <li class="menu-item" onclick="handleLogout()">
                 <a>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                     </svg>
-                    <span>Approved Leaves</span>
+                    <span>Logout</span>
                 </a>
             </li>
-            <li class="menu-item" data-tab="long-leaves">
-                <a>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <span>Long Leaves (30+)</span>
-                </a>
-            </li>
-
-            <!-- Info Widget -->
-            <div class="sidebar-widget">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <div>Manage leave approvals and view analytics in real-time.</div>
-            </div>
         </ul>
 
-        <!-- Logout Button -->
-        <div style="padding: 0 0 16px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 20px;">
-            <button type="button" id="logoutBtn" style="width:100%; padding:10px; background: #ff5100; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; font-family: var(--font-stack);">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                </svg>
-                Logout
-            </button>
+        <div class="sidebar-widget">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div>Need help? Check the documentation or contact support.</div>
         </div>
-    </aside>
+    </div>
 
-    <!-- 2. Main Content Area -->
-    <main class="main-content">
+    <!-- Main Content -->
+    <div class="main-content">
         <!-- Dashboard Header -->
         <div class="dashboard-header">
             <div class="admin-greeting">
-                <h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m0 0l-2-1m2 1v2.5M14 4l-2 1m0 0l-2-1m2 1v2.5" />
-                    </svg>
-                    Welcome Back, Admin
-                </h2>
-                <p id="liveDate" style="margin-top: 6px;">Today's dashboard overview</p>
+                <h2>📊 Dashboard</h2>
+                <p id="greetingText">Good morning! Here's your leave management overview.</p>
             </div>
-
             <div class="header-right">
                 <div class="header-date-picker">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 7V3m8 4V3m-9 8h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                     </svg>
-                    <span id="dateDisplay">May 23, 2026</span>
+                    <span id="todayDate">Today</span>
                 </div>
-
                 <button class="bell-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                     </svg>
-                    <span class="bell-badge" id="notiCount">3</span>
+                    <span class="bell-badge" id="notiCount">0</span>
                 </button>
-                <!-- Profile Avatar pill -->
                 <div class="admin-profile-pill">
-                    <div class="profile-avatar">AD</div>
+                    <div class="profile-avatar">A</div>
                     <div class="profile-info">
-                        <h4 id="adminEmailText">Admin User</h4>
-                        <p>Administrator</p>
+                        <h4>Admin</h4>
+                        <p id="adminEmailDisplay">user@example.com</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Float Message Container For Notifications -->
-        <div id="panelMessage" class="dash-msg-bar"></div>
-
-        <!-- Statistics Row (Cards) -->
-        <div class="stats-row">
+        <!-- Statistics Row -->
+        <div class="stats-row" id="statsContainer">
             <div class="stat-card">
                 <div class="stat-icon-wrap total-stat">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
                 <div class="stat-details">
-                    <span class="stat-title">Total Requests</span>
+                    <span class="stat-title">Total Leaves</span>
                     <h3 class="stat-value" id="countTotal">0</h3>
-                    <span class="stat-sub">All leave applications</span>
+                    <span class="stat-sub">All submissions</span>
                 </div>
             </div>
 
             <div class="stat-card">
                 <div class="stat-icon-wrap approved-stat">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m7 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
                 <div class="stat-details">
                     <span class="stat-title">Approved</span>
                     <h3 class="stat-value" id="countApproved">0</h3>
-                    <span class="stat-sub">Processed</span>
+                    <span class="stat-sub">Confirmed</span>
                 </div>
             </div>
 
             <div class="stat-card">
                 <div class="stat-icon-wrap rejected-stat">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l-2-2m0 0l-2 2m2-2v12m8-12l2 2m0 0l2-2m-2 2v12M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10 14l-2-2m0 0l-2-2m2 2l2-2m-2 2l-2 2M9 3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
                 <div class="stat-details">
@@ -1359,289 +1273,224 @@ tr:hover td {
 
             <div class="stat-card">
                 <div class="stat-icon-wrap pending-stat">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
                 <div class="stat-details">
                     <span class="stat-title">Pending</span>
                     <h3 class="stat-value" id="countPending">0</h3>
-                    <span class="stat-sub">Awaiting action</span>
+                    <span class="stat-sub">Needs review</span>
                 </div>
             </div>
         </div>
 
-        <!-- Main Leaves Table Section -->
-        <section class="table-section">
-            <!-- Headers and operations -->
+        <!-- Data Table Section -->
+        <div class="table-section">
             <div class="table-header-bar">
                 <div class="table-title-wrap">
                     <h3>Leave Requests</h3>
                     <div></div>
                 </div>
                 <div class="table-actions-wrap">
-                    <!-- Dynamic client side search inputs -->
                     <div class="search-input-wrap">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
-                        <input id="searchInput" type="text" placeholder="Search by name or email...">
+                        <input type="text" id="searchInput" placeholder="Search by name, email, or reason..." oninput="performClientSearch()">
                     </div>
-                    <button class="action-btn" id="filterBtn" onclick="showStatusToast('Filters: showing all requests.', 'info');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    <button class="action-btn btn-orange" onclick="loadData()">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                         </svg>
-                        <span>Filter</span>
-                    </button>
-                    <button class="action-btn btn-orange" id="refreshBtn" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H17" />
-                        </svg>
-                        <span>Refresh</span>
+                        Refresh
                     </button>
                 </div>
             </div>
 
-            <!-- Scrollable table wrappers -->
             <div class="table-wrap">
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Employee</th>
+                            <th>Email</th>
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Batch</th>
                             <th>Reason</th>
-                            <th>Email</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="leaveRows">
-                        <tr>
-                            <td class="empty-table-row" colspan="8">Please log in to view pending leave applications.</td>
+                    <tbody id="tableBody">
+                        <tr class="empty-table-row">
+                            <td colspan="9">Loading data...</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Table pagination footer -->
             <div class="table-footer">
-                <div class="results-count" id="resultsCount">Showing 0 to 0 of 0 results</div>
-
-                <div class="pagination-wrap">
-                    <button type="button" class="pag-btn" id="prevBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </button>
-                    <span id="pageInfo">1 of 1</span>
-                    <button type="button" class="pag-btn" id="nextBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
+                <div class="results-count" id="resultsCount">0 results</div>
+                <div class="pagination-wrap" id="paginationWrap">
+                    <!-- Pagination will be inserted here -->
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <!-- Status Message Bar -->
+        <div class="dash-msg-bar" id="panelMessage"></div>
+    </div>
 </div>
 
-<!-- ==========================================================================
-     INTEGRATED APPLICATION CLIENT LOGIC
-     ========================================================================== -->
+<style>
+.dash-msg-bar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    max-width: 300px;
+    animation: slideIn 0.3s ease;
+}
+
+.dash-msg-bar.dash-msg-error {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+}
+
+.dash-msg-bar.dash-msg-info {
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1e40af;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+</style>
+
 <script>
-const API_BASE = location.protocol === "file:" ? "http://localhost:3000" : "";
-
-let loggedIn = false;
+const API_BASE = "http://localhost:3000";
 let adminToken = localStorage.getItem("adminToken") || "";
-let originalLeavesData = []; // Primary dynamic data cache
+let loggedIn = !!adminToken;
+let originalLeavesData = [];
 
-// Cache DOM query targets
-const container = document.getElementById("container");
 const loginBox = document.getElementById("loginBox");
 const panel = document.getElementById("panel");
-const loginForm = document.getElementById("loginForm");
 const loginBtn = document.getElementById("loginBtn");
-const togglePassword = document.getElementById("togglePassword");
-const passwordInput = document.getElementById("password");
-const eyeIcon = document.getElementById("eyeIcon");
-const refreshBtn = document.getElementById("refreshBtn");
-const logoutBtn = document.getElementById("logoutBtn");
-const leaveRows = document.getElementById("leaveRows");
 const loginMessage = document.getElementById("loginMessage");
 const panelMessage = document.getElementById("panelMessage");
 const searchInput = document.getElementById("searchInput");
-
-// Metric node targets
+const tableBody = document.getElementById("tableBody");
 const countTotal = document.getElementById("countTotal");
 const countApproved = document.getElementById("countApproved");
 const countRejected = document.getElementById("countRejected");
 const countPending = document.getElementById("countPending");
 const notiCount = document.getElementById("notiCount");
-const adminEmailText = document.getElementById("adminEmailText");
-const resultsCount = document.getElementById("resultsCount");
-const liveDate = document.getElementById("liveDate");
 
-// Event Bindings
-loginForm.addEventListener("submit", login);
-refreshBtn.addEventListener("click", loadData);
-logoutBtn.addEventListener("click", () => logout("Logout successful."));
-searchInput.addEventListener("input", performClientSearch);
-
-// Sidebar Navigation Interactive Logic (Tab filtering & Feature coming soon toasts)
-document.querySelectorAll(".sidebar-menu .menu-item").forEach((item) => {
-    item.addEventListener("click", () => {
-        const tab = item.getAttribute("data-tab");
-        if (!tab) return;
-
-        // Clear active class from all navigation items
-        document.querySelectorAll(".sidebar-menu .menu-item").forEach(mi => mi.classList.remove("active"));
-        item.classList.add("active");
-
-        if (tab === "dashboard") {
-            renderTableRows(originalLeavesData);
-            showStatusToast("Showing all leave requests.", "success");
-        } else if (tab === "leave-requests") {
-            const pending = originalLeavesData.filter(l => l.status === "Pending" || !l.status);
-            renderTableRows(pending);
-            showStatusToast(`Showing ${pending.length} pending leave requests.`, "success");
-        } else if (tab === "approved-leaves") {
-            const approved = originalLeavesData.filter(l => l.status === "Approved");
-            renderTableRows(approved);
-            showStatusToast(`Showing ${approved.length} approved leave requests.`, "success");
-        } else if (tab === "long-leaves") {
-            const longLeaves = originalLeavesData.filter(l => {
-                if (!l.startDate || !l.endDate) return false;
-                const start = new Date(l.startDate);
-                const end = new Date(l.endDate);
-                const diffTime = Math.abs(end - start);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-                return diffDays > 30;
-            });
-            renderTableRows(longLeaves);
-            showStatusToast(`Showing ${longLeaves.length} leaves longer than 30 days.`, "success");
-        }
-    });
+// Check if user is already logged in on page load
+window.addEventListener("DOMContentLoaded", () => {
+    if (loggedIn && adminToken) {
+        showPanel();
+        loadData();
+    }
+    updateGreeting();
 });
 
-// Password toggle show/hide
-togglePassword.addEventListener("click", () => {
-    const type = passwordInput.type === "password" ? "text" : "password";
-    passwordInput.type = type;
-    eyeIcon.textContent = type === "text" ? "🙈" : "👁️";
-});
-
-// Format date helper
-function formatDate(dateStr) {
-    if (!dateStr) return "N/A";
-    const opts = { year: "numeric", month: "short", day: "numeric" };
-    return new Date(dateStr).toLocaleDateString("en-US", opts);
+function togglePassword() {
+    const pwd = document.getElementById("password");
+    pwd.type = pwd.type === "password" ? "text" : "password";
 }
 
-// Set current date in the date display
-document.getElementById("dateDisplay").textContent = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-
-// Auth headers
-function authHeaders() {
-    return { Authorization: `Bearer ${adminToken}`, "Content-Type": "application/json" };
+function updateGreeting() {
+    const now = new Date().getHours();
+    const greeting = now < 12 ? "Good morning" : now < 18 ? "Good afternoon" : "Good evening";
+    document.getElementById("greetingText").textContent = `${greeting}! Here's your leave management overview.`;
+    
+    const todayDate = new Date().toLocaleDateString("en-US", { weekday: "short", year: "numeric", month: "short", day: "numeric" });
+    document.getElementById("todayDate").textContent = todayDate;
 }
 
-// HTML Escape helper
-function escapeHtml(text) {
-    const map = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" };
-    return String(text).replace(/[&<>"']/g, c => map[c]);
-}
+async function handleLogin(event) {
+    event.preventDefault();
+    
+    loginMessage.textContent = "";
+    loginMessage.classList.remove("success");
+    loginBtn.disabled = true;
+    loginBtn.querySelector("span").textContent = "Logging in...";
 
-// Color and avatar generation for unique employee profiles
-const colors = [
-    { bg: "#ffedd5", text: "#ea580c" },
-    { bg: "#f0fdf4", text: "#15803d" },
-    { bg: "#eff6ff", text: "#2563eb" },
-    { bg: "#faf5ff", text: "#7c3aed" },
-    { bg: "#fef3c7", text: "#b45309" },
-    { bg: "#fee2e2", text: "#b91c1c" }
-];
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-function getAvatarStyles(name) {
-    const initial = String(name || "?").charAt(0).toUpperCase();
-    const index = Math.floor(Math.pow(initial.charCodeAt(0), 2)) % colors.length;
-    return {
-        initial,
-        styleAttr: `background-color: ${colors[index].bg}; color: ${colors[index].text}; border: 1.5px solid ${colors[index].text}22`
-    };
-}
-
-// Render dynamic rows with exact aesthetic specifications
-function renderTableRows(leaves) {
-    if (!leaves.length) {
-        leaveRows.innerHTML = '<tr><td class="empty-table-row" colspan="8">No matching leave requests found.</td></tr>';
-        resultsCount.textContent = "Showing 0 to 0 of 0 results";
+    if (!email || !password) {
+        loginMessage.textContent = "Please enter both email and password.";
+        loginBtn.disabled = false;
+        loginBtn.querySelector("span").textContent = "Sign In";
         return;
     }
 
-    leaveRows.innerHTML = "";
-    leaves.forEach((leave) => {
-        const row = document.createElement("tr");
+    try {
+        const response = await fetch(API_BASE + "/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
 
-        // Format dates beautifully
-        const formattedStart = formatDate(leave.startDate);
-        const formattedEnd = formatDate(leave.endDate);
+        const data = await response.json();
 
-        // Generate status badge classes
-        const statusVal = leave.status || "Pending";
-        let statusClass = "status-pending";
-        if (statusVal === "Approved") statusClass = "status-approved";
-        if (statusVal === "Rejected") statusClass = "status-rejected";
+        if (!response.ok || !data.success) {
+            loginMessage.textContent = data.message || "Login failed. Please check your credentials.";
+            loginBtn.disabled = false;
+            loginBtn.querySelector("span").textContent = "Sign In";
+            return;
+        }
 
-        // Generate batch badge classes
-        const batchVal = leave.batch || "Full Time";
-        const batchClass = batchVal === "Full Time" ? "batch-full" : "batch-part";
+        // Successful login
+        adminToken = data.token;
+        localStorage.setItem("adminToken", adminToken);
+        loggedIn = true;
+        
+        loginMessage.textContent = "✅ Login successful! Redirecting...";
+        loginMessage.classList.add("success");
 
-        // Get unique initials avatar styles
-        const avatar = getAvatarStyles(leave.name);
+        setTimeout(() => {
+            showPanel();
+            loadData();
+        }, 800);
 
-        row.innerHTML = `
-            <td>
-                <div class="name-cell-wrap">
-                    <div class="name-initials-avatar" style="${avatar.styleAttr}">${avatar.initial}</div>
-                    <span class="name-text-val">${escapeHtml(leave.name)}</span>
-                </div>
-            </td>
-            <td><span class="date-val">${formattedStart}</span></td>
-            <td><span class="date-val">${formattedEnd}</span></td>
-            <td><span class="badge-pill ${batchClass}">${escapeHtml(batchVal)}</span></td>
-            <td><div class="reason-text" title="${escapeHtml(leave.reason)}">${escapeHtml(leave.reason)}</div></td>
-            <td><span class="email-val">${escapeHtml(leave.email)}</span></td>
-            <td><span class="badge-pill ${statusClass}">${statusVal}</span></td>
-            <td>
-                <div class="row-actions-wrap">
-                    <button type="button" class="table-btn btn-approve" onclick="approveLeave(${leave.id})">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span>Approve</span>
-                    </button>
-                    <button type="button" class="table-btn btn-reject" onclick="rejectLeave(${leave.id})">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                        <span>Reject</span>
-                    </button>
-                </div>
-            </td>
-        `;
-
-        leaveRows.appendChild(row);
-    });
-
-    resultsCount.textContent = `Showing 1 to ${leaves.length} of ${leaves.length} results`;
+    } catch (error) {
+        console.error("Login error:", error);
+        loginMessage.textContent = "Connection error. Please try again.";
+        loginBtn.disabled = false;
+        loginBtn.querySelector("span").textContent = "Sign In";
+    }
 }
 
-// Load all leave data from the backend
-async function loadData() {
-    showStatusToast("Loading data...", "info");
+function authHeaders() {
+    return {
+        "Authorization": `Bearer ${adminToken}`,
+        "Content-Type": "application/json"
+    };
+}
 
+async function loadData() {
     try {
         const res = await fetch(API_BASE + "/leaves", {
             method: "GET",
@@ -1649,7 +1498,7 @@ async function loadData() {
         });
 
         if (res.status === 401) {
-            logout("Session expired. Please login again.");
+            handleLogout("Session expired. Please login again.");
             return;
         }
 
@@ -1670,21 +1519,83 @@ async function loadData() {
         renderTableRows(data);
         showStatusToast("Data loaded successfully!", "success");
     } catch (err) {
-        console.error(err);
+        console.error("Load data error:", err);
         showStatusToast("Failed to load data. Please check your connection.", "error");
     }
 }
 
-// Client side search / filter
+function renderTableRows(data) {
+    if (!data || data.length === 0) {
+        tableBody.innerHTML = '<tr class="empty-table-row"><td colspan="9">No leave requests found</td></tr>';
+        document.getElementById("resultsCount").textContent = "0 results";
+        return;
+    }
+
+    tableBody.innerHTML = data.map(leave => {
+        const statusClass = leave.status === "Approved" ? "status-approved" : 
+                           leave.status === "Rejected" ? "status-rejected" : "status-pending";
+        const statusText = leave.status || "Pending";
+
+        return `
+            <tr>
+                <td>${leave.id || "-"}</td>
+                <td>
+                    <div class="name-cell-wrap">
+                        <div class="name-initials-avatar" style="background-color: ${getAvatarColor(leave.name)}">
+                            ${getInitials(leave.name)}
+                        </div>
+                        <div>
+                            <div class="name-text-val">${leave.name || "-"}</div>
+                            <div class="emp-id-val">${leave.employeeId || "-"}</div>
+                        </div>
+                    </div>
+                </td>
+                <td><span class="email-val">${leave.email || "-"}</span></td>
+                <td><span class="date-val">${leave.startDate || "-"}</span></td>
+                <td><span class="date-val">${leave.endDate || "-"}</span></td>
+                <td><span class="badge-pill batch-full">${leave.batch || "N/A"}</span></td>
+                <td><span class="reason-text">${leave.reason || "-"}</span></td>
+                <td><span class="badge-pill ${statusClass}">${statusText}</span></td>
+                <td>
+                    <div class="row-actions-wrap">
+                        ${statusText === "Pending" ? `
+                            <button class="table-btn btn-approve" onclick="approveLeave(${leave.id})">
+                                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+                                Approve
+                            </button>
+                            <button class="table-btn btn-reject" onclick="rejectLeave(${leave.id})">
+                                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+                                Reject
+                            </button>
+                        ` : `
+                            <span style="color: #94a3b8; font-size: 13px;">Already ${statusText}</span>
+                        `}
+                    </div>
+                </td>
+            </tr>
+        `;
+    }).join("");
+
+    document.getElementById("resultsCount").textContent = `${data.length} result${data.length !== 1 ? "s" : ""}`;
+}
+
+function getInitials(name) {
+    return name ? name.split(" ").map(n => n[0]).join("").toUpperCase().substring(0, 2) : "A";
+}
+
+function getAvatarColor(name) {
+    const colors = ["#ffedd5", "#fce7f3", "#dbeafe", "#dcfce7", "#fef3c7"];
+    const index = (name ? name.charCodeAt(0) : 0) % colors.length;
+    return colors[index];
+}
+
 function performClientSearch() {
     const query = searchInput.value.toLowerCase();
     const filtered = originalLeavesData.filter(leave => {
         return String(leave.name || "").toLowerCase().includes(query) ||
-            String(leave.email || "").toLowerCase().includes(query) ||
-            String(leave.reason || "").toLowerCase().includes(query)
-        );
+               String(leave.email || "").toLowerCase().includes(query) ||
+               String(leave.reason || "").toLowerCase().includes(query);
     });
-
     renderTableRows(filtered);
 }
 
@@ -1706,7 +1617,7 @@ async function updateLeaveStatus(path) {
         });
 
         if (res.status === 401) {
-            logout("Session expired. Please login again.");
+            handleLogout("Session expired. Please login again.");
             return;
         }
 
@@ -1714,7 +1625,8 @@ async function updateLeaveStatus(path) {
         showStatusToast(data.message || "Action updated successfully.", "success");
         await loadData();
     } catch (err) {
-        showStatusToast("Failed to process status change. Please check connection.", "error");
+        console.error("Update status error:", err);
+        showStatusToast("Failed to process action. Please check connection.", "error");
     }
 }
 
@@ -1730,77 +1642,30 @@ function showStatusToast(text, type) {
 function showPanel() {
     loginBox.classList.add("hidden");
     panel.classList.remove("hidden");
+    document.getElementById("adminEmailDisplay").textContent = document.getElementById("email").value || "admin@company.com";
 }
 
-function hidePanel() {
-    loginBox.classList.remove("hidden");
-    panel.classList.add("hidden");
-}
-
-async function login(event) {
-    event.preventDefault();
-
-    loginMessage.textContent = "";
-    loginBtn.disabled = true;
-    loginBtn.querySelector("span").textContent = "Logging in...";
-
-    try {
-        const res = await fetch(API_BASE + "/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                email: document.getElementById("email").value,
-                password: document.getElementById("password").value
-            })
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-            loginMessage.textContent = data.message || "Login failed. Please check credentials.";
-            loginBtn.disabled = false;
-            loginBtn.querySelector("span").textContent = "Sign In";
-            return;
-        }
-
-        adminToken = data.token;
-        localStorage.setItem("adminToken", adminToken);
-        loggedIn = true;
-        showPanel();
-        loadData();
-    } catch (err) {
-        loginMessage.textContent = "Connection error. Please try again.";
-    } finally {
-        loginBtn.disabled = false;
-        loginBtn.querySelector("span").textContent = "Sign In";
-    }
-}
-
-function logout(msg) {
+function handleLogout(message) {
+    localStorage.removeItem("adminToken");
     adminToken = "";
     loggedIn = false;
-    localStorage.removeItem("adminToken");
-    hidePanel();
-    loginMessage.textContent = msg || "Logged out successfully";
-    loginForm.reset();
+    
+    if (message) showStatusToast(message, "info");
+    
+    setTimeout(() => {
+        loginBox.classList.remove("hidden");
+        panel.classList.add("hidden");
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+        loginMessage.textContent = "";
+    }, 500);
 }
 
-// Auto login routing
-if (adminToken) {
-    showPanel();
-    loadData();
+function switchTab(element, tab) {
+    document.querySelectorAll(".menu-item").forEach(item => item.classList.remove("active"));
+    element.classList.add("active");
 }
-
-// Add some styling for error messages
-const style = document.createElement('style');
-style.textContent = `
-    .dash-msg-error {
-        background: #fef2f2;
-        border: 1px solid #fecaca;
-        color: #991b1b;
-    }
-`;
-document.head.appendChild(style);
 </script>
+
 </body>
 </html>
